@@ -26,6 +26,7 @@ NeoBundle	'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'ujihisa/unite-colorscheme'
 
 " Required:
 filetype plugin indent on
