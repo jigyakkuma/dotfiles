@@ -12,6 +12,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" ColorScheme
+NeoBundle 'tomasr/molokai'
+
 " My Bundles here:
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neosnippet.vim'
