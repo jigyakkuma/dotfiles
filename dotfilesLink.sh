@@ -1,4 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+DOT_FILES=( .zshrc .vimrc .gitconfig )
+ 
+for file in ${DOT_FILES[@]}
+do
+    ln -sfb ~/dotfiles/$file ~/$file
+done
+
