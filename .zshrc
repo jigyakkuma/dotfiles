@@ -69,6 +69,7 @@ export TERM=xterm-256color
 
 # alias
 alias top='htop'
+alias weechat='weechat-curses'
 
 # ignore a history of duplicate
 setopt hist_ignore_all_dups
