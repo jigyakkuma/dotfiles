@@ -136,3 +136,10 @@ zle -N percol_insert_history
 # C-x i でディレクトリを挿入
 bindkey '^x;' percol_cd_history
 bindkey '^xi' percol_insert_history
+
+# window-name auto rename for ssh
+function ssh() {
+    local window_name=$(tmux display -p '#{window_name}')
+    command ssh $@
+    tmux rename-window $window_name
+}
