@@ -56,7 +56,7 @@ fi
 export GOOS=linux
 export GOARCH=amd64
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/.go
+export GOPATH=$HOME
 export GAE_SDK_ROOT=$GOPATH/sdk/go_appengine
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$GAE_SDK_ROOT
 export DEBFULLNAME="jigyakkuma"
