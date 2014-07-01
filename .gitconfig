@@ -1,0 +1,10 @@
+[user]
+	name = yamada-shinji
+	email = jigyakkuma@gmail.com
+[push]
+	default = matching
+[alias]
+	ci = commit
+
+[ghq]
+  root = ~/src
