@@ -62,6 +62,10 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$GAE_SDK_ROOT
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
+export GOENVGOROOT=$HOME/.goenvs
+export GOENVTARGET=$HOME/bin
+export GOENVHOME=$HOME/workspace
+
 setopt nonomatch
 
 # color setting
