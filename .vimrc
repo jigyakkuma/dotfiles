@@ -30,6 +30,9 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'sorah/unite-ghq'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'vim-scripts/fcitx.vim'
 
 " Required:
 filetype plugin indent on
