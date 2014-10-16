@@ -33,6 +33,10 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'sorah/unite-ghq'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/fcitx.vim'
+" markdown plugins:
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
 
 " Required:
 filetype plugin indent on
@@ -197,4 +201,6 @@ function! s:syntastic()
     SyntasticCheck
 endfunction
 
+" add a markdown filetype
+au BufRead,BufNewFile *.md set filetype=markdown
 
