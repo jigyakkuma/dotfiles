@@ -1,5 +1,9 @@
+"==========================================
+" neobundlinserte
+"==========================================
+set nocompatible    " Be iMproved
+
 if has('vim_starting')
-	set nocompatible    " Be iMproved
 
 	" Required:
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -201,6 +205,17 @@ function! s:syntastic()
     SyntasticCheck
 endfunction
 
+
+"==========================================
+" markdown
+"==========================================
+
 " add a markdown filetype
 au BufRead,BufNewFile *.md set filetype=markdown
 
+
+"==========================================
+" lang
+"==========================================
+""" golang
+exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
