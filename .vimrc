@@ -211,7 +211,7 @@ endfunction
 "==========================================
 
 " add a markdown filetype
-au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 
 "==========================================
