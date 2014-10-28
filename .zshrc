@@ -62,6 +62,9 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$GAE_SDK_ROOT
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
+
 setopt nonomatch
 
 # color setting
@@ -158,3 +161,31 @@ function peco-src () {
 }
 zle -N peco-src
 bindkey '^]' peco-src
+
+# predict toggle
+
+autoload predict-on
+
+#zle -N predict-on
+#zle -N predict-off
+
+alias predict.on="predict-on && export ZSH_PREDICT_STATE=0"
+alias predict.off="predict-off && export ZSH_PREDICT_STATE=1"
+
+predict.on
+
+predict.toggle()
+{
+  if [ $ZSH_PREDICT_STATE -eq 0 ]
+  then predict.off;
+  else predict.on;
+  fi;
+}
+
+zle -N predict.toggle
+
+bindkey '^[^[' predict.toggle
+
+zstyle ':predict' verbose true
+
+
