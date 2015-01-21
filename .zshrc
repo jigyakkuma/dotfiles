@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
+ZSH_THEME="steeef"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -40,7 +40,7 @@ ZSH_THEME="ys"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git go ruby themes)
+plugins=(git go ruby themes docker bower knife npm pip vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -59,11 +59,13 @@ export GOROOT=$(go env GOROOT)
 export GOPATH=$HOME
 export GAE_SDK_ROOT=$HOME/bin/src/go_appengine
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$GAE_SDK_ROOT
+export PATH=$PATH:~/bin/src/go_appengine
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
 export PATH="$HOME/.linuxbrew/bin:$PATH"
-export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
 setopt nonomatch
 
@@ -164,28 +166,28 @@ bindkey '^]' peco-src
 
 # predict toggle
 
-autoload predict-on
-
-#zle -N predict-on
-#zle -N predict-off
-
-alias predict.on="predict-on && export ZSH_PREDICT_STATE=0"
-alias predict.off="predict-off && export ZSH_PREDICT_STATE=1"
-
-predict.on
-
-predict.toggle()
-{
-  if [ $ZSH_PREDICT_STATE -eq 0 ]
-  then predict.off;
-  else predict.on;
-  fi;
-}
-
-zle -N predict.toggle
-
-bindkey '^[^[' predict.toggle
-
-zstyle ':predict' verbose true
+# autoload predict-on
+# 
+# #zle -N predict-on
+# #zle -N predict-off
+# 
+# alias predict.on="predict-on && export ZSH_PREDICT_STATE=0"
+# alias predict.off="predict-off && export ZSH_PREDICT_STATE=1"
+# 
+# predict.on
+# 
+# predict.toggle()
+# {
+#   if [ $ZSH_PREDICT_STATE -eq 0 ]
+#   then predict.off;
+#   else predict.on;
+#   fi;
+# }
+# 
+# zle -N predict.toggle
+# 
+# bindkey '^[^[' predict.toggle
+# 
+# zstyle ':predict' verbose true
 
 
