@@ -78,6 +78,9 @@ alias weechat='weechat-curses'
 alias diff='colordiff'
 alias df='dfc'
 
+# compdef
+compdef lssh=ssh
+
 # ignore a history of duplicate
 setopt hist_ignore_all_dups
 
