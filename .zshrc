@@ -49,6 +49,9 @@ if [ -d $HOME/.anyenv ] ; then
   export PATH="$HOME/.anyenv/bin:$PATH"
   eval "$(anyenv init - zsh)"
 fi
+
+eval "$(direnv hook zsh)"
+
 #export PATH="$HOME/.plenv/bin:$PATH"
 #eval "$(plenv init - zsh)"
 #export PATH="$HOME/.rbenv/bin:$PATH"
@@ -193,5 +196,4 @@ bindkey '^]' peco-src
 # bindkey '^[^[' predict.toggle
 # 
 # zstyle ':predict' verbose true
-
 
