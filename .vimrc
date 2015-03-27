@@ -18,6 +18,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ColorScheme
 NeoBundle 'tomasr/molokai'
+NeoBundle 'chriskempson/tomorrow-theme'
+NeoBundle 'w0ng/vim-hybrid'
 
 " My Bundles here:
 NeoBundle 'Shougo/neocomplcache.vim'
@@ -51,8 +53,8 @@ filetype plugin indent on
 NeoBundleCheck
 
 
-syntax on
 set number
+set cursorline
 
 " tab option
 set expandtab "タブ入力を複数の空白入力に置き換える
@@ -208,6 +210,12 @@ function! s:syntastic()
     SyntasticCheck
 endfunction
 
+"==========================================
+"" colorscheme
+"==========================================
+syntax on
+colorscheme koehler
+set background=dark
 
 "==========================================
 " markdown
