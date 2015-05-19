@@ -82,6 +82,9 @@ alias diff='colordiff'
 alias df='dfc'
 alias lssh='lssh.sh'
 
+# editor
+export EDITOR='vim'
+
 # compdef
 compdef lssh.sh=ssh
 
