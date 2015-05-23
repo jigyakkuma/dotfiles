@@ -174,4 +174,7 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
-
+# Set aws command completion
+if pyenv which aws_zsh_completer.sh 1>/dev/null 2>&1; then
+  source "$(pyenv which aws_zsh_completer.sh)"
+fi
