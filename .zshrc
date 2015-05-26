@@ -40,7 +40,7 @@ ZSH_THEME="steeef"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git go ruby themes docker bower knife npm pip vagrant)
+plugins=(git go ruby themes docker bower knife npm pip vagrant common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -52,10 +52,6 @@ fi
 
 eval "$(direnv hook zsh)"
 
-#export PATH="$HOME/.plenv/bin:$PATH"
-#eval "$(plenv init - zsh)"
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
 export GOOS=linux
 export GOARCH=amd64
 export GOROOT=$(go env GOROOT)
@@ -90,11 +86,6 @@ compdef lssh.sh=ssh
 
 # ignore a history of duplicate
 setopt hist_ignore_all_dups
-
-# zaw
-#source ~/widget/zsh/zaw/zaw.zsh
-# zaw bindkey
-#bindkey '^R' zaw-history
 
 # peco history
 function exists { which $1 &> /dev/null }
