@@ -44,14 +44,16 @@ plugins=(git go ruby themes docker bower knife npm pip vagrant common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+# anyenv setting
 if [ -d $HOME/.anyenv ] ; then
   export PATH="$HOME/.anyenv/bin:$PATH"
   eval "$(anyenv init - zsh)"
 fi
 
+# direnv setting 
 eval "$(direnv hook zsh)"
 
+# go env setting
 export GOOS=linux
 export GOARCH=amd64
 export GOROOT=$(go env GOROOT)
@@ -59,13 +61,17 @@ export GOPATH=$HOME
 export GAE_SDK_ROOT=$HOME/bin/src/go_appengine
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$GAE_SDK_ROOT
 export PATH=$PATH:~/bin/src/go_appengine
+
+# developer env setting
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
+# linuxbrew
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
+# ignore no match errors
 setopt nonomatch
 
 # color setting
