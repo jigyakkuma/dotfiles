@@ -83,6 +83,7 @@ alias weechat='weechat-curses'
 alias diff='colordiff'
 alias df='dfc'
 alias lssh='lssh.sh'
+alias vimrc='vim ~/.vimrc'
 
 # editor
 export EDITOR='vim'
