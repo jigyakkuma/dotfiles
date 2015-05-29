@@ -28,7 +28,6 @@ NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache-rsense.vim'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundleLazy 'Blackrush/vim-gocode' , {"autoload": {"filetypes": ['go']}}
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'thinca/vim-quickrun'
@@ -38,12 +37,16 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'sorah/unite-ghq'
-NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/fcitx.vim'
 " markdown plugins:
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
+" golang plugins:
+NeoBundle 'fatih/vim-go'
+NeoBundleLazy 'Blackrush/vim-gocode' , {"autoload": {"filetypes": ['go']}}
+" ruby plugins:
+NeoBundle 'tpope/vim-endwise'
 
 " Required:
 filetype plugin indent on
