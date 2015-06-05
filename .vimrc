@@ -1,7 +1,6 @@
 "==========================================
 " neobundlinserte
-"==========================================
-set nocompatible    " Be iMproved
+"========================================== set nocompatible    " Be iMproved
 
 if has('vim_starting')
 
@@ -26,6 +25,7 @@ NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neocomplcache-rsense.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'vim-scripts/taglist.vim'
@@ -214,7 +214,7 @@ function! s:syntastic()
 endfunction
 
 "==========================================
-"" colorscheme
+" colorscheme
 "==========================================
 syntax on
 colorscheme koehler
@@ -233,3 +233,27 @@ au BufRead,BufNewFile *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 "==========================================
 """ golang
 exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+""" vim-go
+let g:go_fmt_command = "goimports"
+au BufWritePre *.go Fmt
+au BufNewFile,BufRead *.go set sw=2 noexpandtab ts=2
+au FileType go compiler go
+
+""" unite.vim
+" let g:unite_enable_start_insert=1
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+" split horizon window 
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" split vertical window 
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+" escape
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
