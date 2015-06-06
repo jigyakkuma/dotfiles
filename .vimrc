@@ -217,8 +217,8 @@ endfunction
 " colorscheme
 "==========================================
 syntax on
-colorscheme koehler
-set background=dark
+colorscheme molokai
+highlight Normal ctermbg=none
 
 "==========================================
 " markdown
