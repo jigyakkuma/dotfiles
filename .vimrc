@@ -49,7 +49,7 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 " golang plugins:
-NeoBundle 'fatih/vim-go'
+NeoBundle 'fatih/vim-go' , {"autoload": {"filetypes": ['go']}}
 NeoBundleLazy 'Blackrush/vim-gocode' , {"autoload": {"filetypes": ['go']}}
 " ruby plugins:
 NeoBundle 'tpope/vim-endwise'
@@ -60,7 +60,6 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
-
 
 set number
 set cursorline
