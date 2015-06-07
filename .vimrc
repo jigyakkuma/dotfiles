@@ -21,6 +21,12 @@ NeoBundle 'chriskempson/tomorrow-theme'
 NeoBundle 'w0ng/vim-hybrid'
 
 " My Bundles here:
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
@@ -239,7 +245,9 @@ au BufWritePre *.go Fmt
 au BufNewFile,BufRead *.go set sw=2 noexpandtab ts=2
 au FileType go compiler go
 
-""" unite.vim
+"==========================================
+" unite.vim
+"==========================================
 " let g:unite_enable_start_insert=1
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -257,3 +265,23 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 " escape
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+" Start insert mode
+let g:unite_enable_start_insert=1
+" Case insensitive
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+" Grep Search
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+" Grep search by specifying the directory
+nnoremap <silent> ,dg  :<C-u>Unite grep -buffer-name=search-buffer<CR>
+" Grep search for a word at the cursor position
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
+" grep検索結果の再呼出
+" Recall of grep search results
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+" Use ag to unite grep
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
