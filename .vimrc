@@ -1,6 +1,7 @@
 "==========================================
 " neobundlinserte
-"========================================== set nocompatible    " Be iMproved
+"==========================================
+set nocompatible    " Be iMproved
 
 if has('vim_starting')
 
@@ -40,7 +41,6 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle	'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'sorah/unite-ghq'
 NeoBundle 'vim-scripts/fcitx.vim'
@@ -53,6 +53,10 @@ NeoBundle 'fatih/vim-go' , {"autoload": {"filetypes": ['go']}}
 NeoBundleLazy 'Blackrush/vim-gocode' , {"autoload": {"filetypes": ['go']}}
 " ruby plugins:
 NeoBundle 'tpope/vim-endwise'
+" syntax check
+NeoBundle 'scrooloose/syntastic'
+" auto save
+NeoBundle 'vim-scripts/vim-auto-save'
 
 " Required:
 filetype plugin indent on
@@ -61,7 +65,9 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
+" Display line number
 set number
+" Display cursor Line
 set cursorline
 
 " tab option
@@ -72,13 +78,20 @@ set softtabstop=2
 set autoindent
 set smartindent
 
+" set encoding
+set encoding=utf-8
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+
+" color setting
+set t_Co=256
+
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 "let g:neocomplcache_enable_at_startup = 1
 " Use neocomplete.
- let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
@@ -172,13 +185,6 @@ let g:lightline = {
       \ }
 set laststatus=2
 
-" color setting
-set t_Co=256
-
-" set encoding
-set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
-
 " set taglist
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
@@ -205,19 +211,6 @@ augroup EmmitVim
   autocmd FileType * let g:user_emmet_settings.indentation = '               '[:&tabstop]
 augroup END
 
-" set syntastic.vim
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_mode_map = {'mode': 'passive'} 
-augroup AutoSyntastic
-    autocmd!
-    autocmd InsertLeave,TextChanged * call s:syntastic() 
-augroup END
-function! s:syntastic()
-    w
-    SyntasticCheck
-endfunction
-
 "==========================================
 " colorscheme
 "==========================================
@@ -228,7 +221,6 @@ highlight Normal ctermbg=none
 "==========================================
 " markdown
 "==========================================
-
 " add a markdown filetype
 au BufRead,BufNewFile *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
@@ -236,8 +228,6 @@ au BufRead,BufNewFile *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 "==========================================
 " lang
 "==========================================
-""" golang
-exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 """ vim-go
 let g:go_fmt_command = "goimports"
 au BufWritePre *.go Fmt
@@ -275,7 +265,6 @@ nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ,dg  :<C-u>Unite grep -buffer-name=search-buffer<CR>
 " Grep search for a word at the cursor position
 nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
-" grep検索結果の再呼出
 " Recall of grep search results
 nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 " Use ag to unite grep
@@ -284,3 +273,25 @@ if executable('ag')
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+"==========================================
+" syntastic.vim
+"==========================================
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_mode_map = { 'mode': 'passive' }
+augroup AutoSyntastic
+    autocmd!
+    autocmd InsertLeave,TextChanged *.{go,rb,js,css,pl,sh,json,html} call s:syntastic() 
+augroup END
+function! s:syntastic()
+    w
+    SyntasticCheck
+endfunction
+
+"==========================================
+" vim-auto-save
+"==========================================
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 0
+let g:auto_save_silent = 1
