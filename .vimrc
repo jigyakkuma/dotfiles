@@ -44,6 +44,10 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'sorah/unite-ghq'
 NeoBundle 'vim-scripts/fcitx.vim'
+NeoBundle 'szw/vim-tags'
+NeoBundle 'kana/vim-submode'
+" indent highlight plugin:
+NeoBundle 'nathanaelkane/vim-indent-guides'
 " markdown plugins:
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
@@ -295,3 +299,38 @@ endfunction
 let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_silent = 1
+
+"==========================================
+" vim-indent-guides
+"==========================================
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+
+"==========================================
+" key bind
+"==========================================
+" split
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" quick run
+nnoremap <silent> qr  :<C-u>QuickRun<CR>
+
