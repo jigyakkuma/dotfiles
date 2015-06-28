@@ -105,7 +105,7 @@ set foldmethod=marker
 "==========================================
 " <leader> key
 " {{{
-let mapleader = ","
+let mapleader = "\<Space>"
 " }}}
 
 " split
@@ -324,6 +324,9 @@ let g:go_fmt_command = "goimports"
 au BufWritePre *.go Fmt
 au BufNewFile,BufRead *.go set sw=2 noexpandtab ts=2
 au FileType go compiler go
+
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gr <Plug>(go-run)
 " }}}
 
 "==========================================
@@ -353,13 +356,13 @@ let g:unite_enable_start_insert=1
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 " Grep Search
-nnoremap <silent> <leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> <leader>gg  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " Grep search by specifying the directory
 nnoremap <silent> <leader>dg  :<C-u>Unite grep -buffer-name=search-buffer<CR>
 " Grep search for a word at the cursor position
 nnoremap <silent> <leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
 " Recall of grep search results
-nnoremap <silent> <leader>r  :<C-u>UniteResume search-buffer<CR>
+" nnoremap <silent> <leader>r  :<C-u>UniteResume search-buffer<CR>
 " Use ag to unite grep
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
