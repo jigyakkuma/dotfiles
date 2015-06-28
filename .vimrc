@@ -138,6 +138,11 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 nnoremap <silent> qr  :<C-u>QuickRun<CR>
 " }}}
 
+" open a new file
+" {{{
+nnoremap <Leader>o :CtrlP<CR>
+" }}}
+
 "==========================================
 " neocomplete
 "==========================================
