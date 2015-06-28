@@ -140,7 +140,7 @@ nnoremap <silent> qr  :<C-u>QuickRun<CR>
 
 " open a new file
 " {{{
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>o :new<CR>
 " }}}
 
 " Copy and paste to the system clipboard
