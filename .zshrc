@@ -84,6 +84,7 @@ alias diff='colordiff'
 alias df='dfc'
 alias lssh='lssh.sh'
 alias vimrc='vim ~/.vimrc'
+alias docker='sudo docker'
 
 # editor
 export EDITOR='vim'
