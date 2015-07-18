@@ -53,19 +53,21 @@ NeoBundle 'kana/vim-submode'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " markdown plugins:
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kannokanno/previm' , {"au"]}}
+NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 " golang plugins:
 NeoBundle 'fatih/vim-go' , {"autoload": {"filetypes": ['go']}}
 NeoBundleLazy 'Blackrush/vim-gocode' , {"autoload": {"filetypes": ['go']}}
 " ruby plugins:
-NeoBundle 'tpope/vim-endwise' , {"autoload": {"filetpyes": ["rb"]}}
+NeoBundle 'tpope/vim-endwise' , {"autoload": {"filetpyes": ['rb']}}
 " syntax check
 NeoBundle 'scrooloose/syntastic'
 " auto save
 NeoBundle 'vim-scripts/vim-auto-save'
 " javascript plugins:
-NeoBundle 'marijnh/tern' , {"autoload": {"filetypes": ['js']}}
+NeoBundle 'marijnh/tern', {"autoload": {"filetypes": ['js']}}
+" Dockerfile plugins:
+NeoBundle 'ekalinin/Dockerfile.vim'
 " }}}
 
 " Required:
