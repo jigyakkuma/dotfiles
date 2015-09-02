@@ -23,6 +23,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/tomorrow-theme'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'jscappini/material.vim'
 
 " My Bundles here:
 NeoBundle 'Shougo/vimproc', {
@@ -322,7 +323,7 @@ augroup END
 "==========================================
 " {{{
 syntax on
-colorscheme molokai
+colorscheme material
 highlight Normal ctermbg=none
 " }}}
 
@@ -360,6 +361,7 @@ nnoremap <silent> <leader>um :<C-u>Unite file_mru<CR>
 nnoremap <silent> <leader>uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> <leader>ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> <leader>uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> <leader>un :<C-u>UniteWithBufferDir file file/new -buffer-name=file<CR>
 " split horizon window 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
