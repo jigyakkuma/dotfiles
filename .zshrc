@@ -43,6 +43,7 @@ ZSH_THEME="steeef"
 plugins=(git go ruby themes docker bower knife npm pip vagrant common-aliases colored-man)
 
 source $ZSH/oh-my-zsh.sh
+bindkey -v
 
 # anyenv setting
 if [ -d $HOME/.anyenv ] ; then
