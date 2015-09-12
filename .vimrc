@@ -50,6 +50,7 @@ NeoBundle 'sorah/unite-ghq'
 NeoBundle 'vim-scripts/fcitx.vim'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'kana/vim-submode'
+NeoBundle 'majutsushi/tagbar'
 " indent highlight plugin:
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " markdown plugins:
@@ -429,4 +430,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
+" }}}
+
+"==========================================
+" tagbar
+"==========================================
+" {{{
+nnoremap <Leader>tt :TagbarToggle<CR>
 " }}}
