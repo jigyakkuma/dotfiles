@@ -67,6 +67,9 @@ export PATH=$PATH:~/bin/src/go_appengine
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
+# Android Studio env setting
+export PATH="$HOME/IDE/android-studio/bin:$PATH"
+
 # linuxbrew
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
@@ -80,7 +83,6 @@ export TERM=xterm-256color
 
 # alias
 alias top='htop'
-alias weechat='weechat-curses'
 alias diff='colordiff'
 alias df='dfc'
 alias lssh='lssh.sh'
@@ -112,16 +114,16 @@ if exists peco; then
 fi
 
 # {{{
-# cd $BMzNr$r5-O?(B
+# cd 履歴を記録
 typeset -U chpwd_functions
-CD_HISTORY_FILE=${HOME}/.cd_history_file # cd $BMzNr$N5-O?@h%U%!%$%k(B
+CD_HISTORY_FILE=${HOME}/.cd_history_file # cd 履歴の記録先ファイル
 function chpwd_record_history() {
     echo $PWD >> ${CD_HISTORY_FILE}
 }
 chpwd_functions=($chpwd_functions chpwd_record_history)
 
-# peco $B$r;H$C$F(B cd $BMzNr$NCf$+$i%G%#%l%/%H%j$rA*Br(B
-# $B2a5n$NK,Ld2s?t$,B?$$$[$IA*Br8uJd$N>e$KMh$k(B
+# peco を使って cd 履歴の中からディレクトリを選択
+# 過去の訪問回数が多いほど選択候補の上に来る
 function peco_get_destination_from_history() {
     sort ${CD_HISTORY_FILE} | uniq -c | sort -r | \
         sed -e 's/^[ ]*[0-9]*[ ]*//' | \
@@ -129,7 +131,7 @@ function peco_get_destination_from_history() {
         peco | xargs echo
 }
 
-# peco $B$r;H$C$F(B cd $BMzNr$NCf$+$i%G%#%l%/%H%j$rA*Br$7(B cd $B$9$k%&%#%8%'%C%H(B
+# peco を使って cd 履歴の中からディレクトリを選択し cd するウィジェット
 function peco_cd_history() {
     local destination=$(peco_get_destination_from_history)
     [ -n $destination ] && cd ${destination/#\~/${HOME}}
@@ -137,7 +139,7 @@ function peco_cd_history() {
 }
 zle -N peco_cd_history
 
-# peco $B$r;H$C$F(B cd $BMzNr$NCf$+$i%G%#%l%/%H%j$rA*Br$7!$8=:_$N%+!<%=%k0LCV$KA^F~$9$k%&%#%8%'%C%H(B
+# peco を使って cd 履歴の中からディレクトリを選択し，現在のカーソル位置に挿入するウィジェット
 function peco_insert_history() {
     local destination=$(peco_get_destination_from_history)
     if [ $? -eq 0 ]; then
@@ -149,8 +151,8 @@ function peco_insert_history() {
 }
 zle -N peco_insert_history
 
-# C-x ; $B$G%G%#%l%/%H%j$K(B cd
-# C-x i $B$G%G%#%l%/%H%j$rA^F~(B
+# C-x ; でディレクトリに cd
+# C-x i でディレクトリを挿入
 bindkey '^x;' peco_cd_history
 bindkey '^xi' peco_insert_history
 
@@ -177,3 +179,6 @@ bindkey '^]' peco-src
 if pyenv which aws_zsh_completer.sh 1>/dev/null 2>&1; then
   source "$(pyenv which aws_zsh_completer.sh)"
 fi
+
+# }}}
+
