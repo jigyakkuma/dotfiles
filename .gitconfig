@@ -1,5 +1,5 @@
 [user]
-	name = yamada-shinji
+	name = jigyakkuma
 	email = jigyakkuma@gmail.com
 [push]
 	default = matching
@@ -12,3 +12,7 @@
 
 [ghq]
   root = ~/src
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
