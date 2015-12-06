@@ -71,6 +71,8 @@ NeoBundle 'marijnh/tern', {"autoload": {"filetypes": ['js']}}
 " Dockerfile plugins:
 NeoBundle 'ekalinin/Dockerfile.vim'
 " }}}
+" Roadworker plugins:
+NeoBundle 'glidenote/roadworker.vim'
 
 " Required:
 filetype plugin indent on
