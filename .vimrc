@@ -86,6 +86,11 @@ set number
 " Display cursor Line
 set cursorline
 
+" set backspace
+" {{{
+set backspace=indent,eol,start
+" }}}
+
 " tab option
 " {{{
 set expandtab
