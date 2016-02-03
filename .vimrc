@@ -1,24 +1,29 @@
 "==========================================
 " neobundlinserte
 "==========================================
+" initialization neobundles
 " {{{
-set nocompatible    " Be iMproved
+ " Note: Skip initialization for vim-tiny or vim-small.
+ if 0 | endif
 
-if has('vim_starting')
+ if &compatible
+   set nocompatible               " Be iMproved
+ endif
 
-	" Required:
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+ " Required:
+ set runtimepath^=~/.vim/bundle/neobundle.vim/
+
+ " Required:
+ call neobundle#begin(expand('~/.vim/bundle/'))
+
+ " Let NeoBundle manage NeoBundle
+ " Required:
+ NeoBundleFetch 'Shougo/neobundle.vim'
 " }}}
 
-" Required:
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
+ " My Bundles here:
+ " Refer to |:NeoBundle-examples|.
 " {{{
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
 " ColorScheme
 NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/tomorrow-theme'
@@ -70,16 +75,24 @@ NeoBundle 'vim-scripts/vim-auto-save'
 NeoBundle 'marijnh/tern', {"autoload": {"filetypes": ['js']}}
 " Dockerfile plugins:
 NeoBundle 'ekalinin/Dockerfile.vim'
-" }}}
 " Roadworker plugins:
 NeoBundle 'glidenote/roadworker.vim'
+" TypeScript plugins:
+NeoBundle 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
+NeoBundle 'clausreinke/typescript-tools.vim', {'build': 'npm install -g', 'autoload': {'filetypes' : ['typescript']}}
+" }}}
 
-" Required:
-filetype plugin indent on
+" neobundle end
+" {{{
+ call neobundle#end()
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+ " Required:
+ filetype plugin indent on
+
+ " If there are uninstalled bundles found on startup,
+ " this will conveniently prompt you to install them.
+ NeoBundleCheck
+" }}}
 
 " Display line number
 set number
