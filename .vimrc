@@ -50,7 +50,13 @@ NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neocomplcache-rsense.vim'
-NeoBundle 'Shougo/vimfiler.vim'
+NeoBundleLazy 'Shougo/vimfiler.vim', {
+      \ "depends": ["Shougo/unite.vim"],
+      \ "autoload": {
+      \   "commands": ["VimFilerTab", "VimFiler", "VimFilerExplorer"],
+      \   "mappings": ['<Plug>(vimfiler_switch)'],
+      \   "explorer": 1,
+      \ }}
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'thinca/vim-quickrun'
@@ -493,4 +499,17 @@ nnoremap <Leader>tt :TagbarToggle<CR>
 " let g:jedi#completions_command = "<C-Space>"
 " let g:jedi#rename_command = "<leader>r"
 " let g:jedi#completions_enabled = 0
+" }}}
+
+"==========================================
+" VimFiler
+"==========================================
+" {{{
+nnoremap <Leader>e :VimFilerExplorer<CR>
+" close vimfiler automatically when there are only vimfiler open
+let s:hooks = neobundle#get_hooks("vimfiler")
+function! s:hooks.on_source(bundle)
+  let g:vimfiler_as_default_explorer = 1
+  let g:vimfiler_enable_auto_cd = 1
+endfunction
 " }}}
