@@ -1,6 +1,13 @@
 "==========================================
 " neobundlinserte
 "==========================================
+" initialization **env
+" {{{
+if executable("pyenv")
+  let $PATH = system("pyenv root")[:-2]."/shims:".$PATH
+endif
+" }}}
+
 " initialization neobundles
 " {{{
  " Note: Skip initialization for vim-tiny or vim-small.
@@ -80,6 +87,15 @@ NeoBundle 'glidenote/roadworker.vim'
 " TypeScript plugins:
 NeoBundle 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 NeoBundle 'clausreinke/typescript-tools.vim', {'build': 'npm install -g', 'autoload': {'filetypes' : ['typescript']}}
+" Python plugins:
+NeoBundle 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
+
+" for pyenv
+NeoBundleLazy "lambdalisue/vim-pyenv", {
+  \ "depends": ['davidhalter/jedi-vim'],
+  \ "autoload": {
+  \   "filetypes": ["python", "python3"]
+  \ }}
 " }}}
 
 " neobundle end
@@ -132,6 +148,11 @@ set foldmethod=marker
 " <leader> key
 " {{{
 let mapleader = "\<Space>"
+" }}}
+
+" inoremap
+" {{{
+inoremap jj <Esc>
 " }}}
 
 " split
@@ -354,6 +375,7 @@ highlight Normal ctermbg=none
 " add a markdown filetype
 " {{{
 au BufRead,BufNewFile *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+au BufRead,BufNewFile *.{md,mdwn,mkd,mkdn,mark*} set fileencoding=utf-8
 " }}}
 
 "==========================================
@@ -457,4 +479,18 @@ let g:indent_guides_guide_size = 1
 "==========================================
 " {{{
 nnoremap <Leader>tt :TagbarToggle<CR>
+" }}}
+
+"==========================================
+" jedi-vim
+"==========================================
+" {{{
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#completions_enabled = 0
 " }}}
