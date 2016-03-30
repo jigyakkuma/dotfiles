@@ -67,13 +67,8 @@ export PATH=$PATH:~/bin/src/go_appengine
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
-# Android Studio env setting
-export PATH="$HOME/IDE/android-studio/bin:$PATH"
-
-# linuxbrew
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+# neovim setting
+export XDG_CONFIG_HOME=~/.config
 
 # ignore no match errors
 setopt nonomatch
@@ -87,6 +82,8 @@ alias diff='colordiff'
 alias df='dfc'
 alias lssh='lssh.sh'
 alias vimrc='vim ~/.vimrc'
+alias vim='nvim'
+alias zshrc='vim ~/.zshrc'
 
 # editor
 export EDITOR='vim'
@@ -165,15 +162,6 @@ zle -N peco_insert_history
 # {{{
 bindkey '^x;' peco_cd_history
 bindkey '^xi' peco_insert_history
-# }}}
-
-# window-name auto rename for ssh
-# {{{
-function ssh() {
-    local window_name=$(tmux display -p '#{window_name}')
-    command ssh $@
-    tmux rename-window $window_name
-}
 # }}}
 
 # Go to GHQ Management Repository 
