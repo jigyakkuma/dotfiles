@@ -21,3 +21,19 @@ repo = 'vim-scripts/vim-auto-save'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = { 'colorscheme': 'wombat' }
+'''
+
+# toml
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+# golang
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'Blackrush/vim-gocode'

@@ -109,6 +109,11 @@ set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp
 " }}}
 
 "==========================================
+" clip board 
+"==========================================
+set clipboard=unnamed,unnamedplus
+
+"==========================================
 " key bind
 "==========================================
 " <leader> key
@@ -217,6 +222,17 @@ nnoremap <Leader>tt :TagbarToggle<CR>
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 " }}}
+
+"==========================================
+" nvim-python
+"==========================================
+let g:python_host_prog = '~/.anyenv/envs/pyenv/shims/python'
+let g:python3_host_prog = '~/.anyenv/envs/pyenv/shims/python3'
+
+"==========================================
+" deoplete
+"==========================================
+let g:deoplete#enable_at_startup = 1
 
 "==========================================
 " emmet-vim
