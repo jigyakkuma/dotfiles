@@ -49,6 +49,8 @@ values."
      html
      yaml
      shell-scripts
+     sql
+     typescript
      gtags
      )
    ;; List of additional packages that will be installed without being
@@ -251,6 +253,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  (setq-default git-magit-status-fullscreen t)
   (custom-set-variables '(spacemacs-theme-custom-colors
                           '((bg1 . nil)
                             (bg2 . nil)
@@ -274,7 +277,39 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq x-select-enable-clipboard t)
+  (global-git-commit-mode t
+   gofmt-command "goimports")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (pangu-spacing find-by-pinyin-dired chinese-pyim chinese-pyim-basedict ace-pinyin pinyinlib ace-jump-mode sql-indent yaml-mode xterm-color web-mode web-beautify tss yaxception log4e tagedit smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv pyvenv pytest pyenv-mode py-yapf pip-requirements orgit multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode hy-mode helm-pydoc helm-gtags helm-gitignore request helm-flyspell helm-css-scss helm-company helm-c-yasnippet haml-mode go-eldoc gitignore-mode github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags flycheck-pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit with-editor eshell-prompt-extras esh-help emmet-mode diff-hl cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-go go-mode company-anaconda company coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic f ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline smooth-scrolling restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+ '(spacemacs-theme-custom-colors
+   (quote
+    ((bg1)
+     (bg2)
+     (bg3)
+     (bg4)
+     (cblk-bg)
+     (cblk-ln-bg)
+     (comment-bg)
+     (head1-bg)
+     (head2-bg)
+     (head3-bg)
+     (head4-bg)
+     (ttip-bg)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+
