@@ -1,49 +1,38 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
+# zsh history
+HISTFILE=~/.zsh_history
+HISTSIZE=6000000
+SAVEHIST=6000000
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="steeef"
+# zplug
+export ZPLUG_HOME=/home/yamada-shinji/.linuxbrew/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+zplug "mollifier/anyframe"
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+# anyframe setting
+zstyle ":anyframe:selector:" use peco
+bindkey '^P' anyframe-widget-put-history
+bindkey '^R' anyframe-widget-execute-history
 
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+zplug load --verbose
 
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+# source /usr/share/zsh/site-contrib/powerline.zsh
+. ~/.local/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git go ruby themes docker bower knife npm pip vagrant common-aliases colored-man)
-
-source $ZSH/oh-my-zsh.sh
+# vim keybind for zsh
 bindkey -v
+
+# compinit
+autoload -Uz compinit
+compinit
+
+# linuxbrew
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
 # anyenv setting
 if [ -d $HOME/.anyenv ] ; then
@@ -51,7 +40,7 @@ if [ -d $HOME/.anyenv ] ; then
   eval "$(anyenv init - zsh)"
 fi
 
-# direnv setting 
+# direnv setting
 eval "$(direnv hook zsh)"
 
 # go env setting
@@ -67,122 +56,36 @@ export PATH=$PATH:~/bin/src/go_appengine
 export DEBFULLNAME="jigyakkuma"
 export DEBMAIL=jigyakkuma@gmail.com
 
-# neovim setting
-export XDG_CONFIG_HOME=~/.config
-
 # ignore no match errors
 setopt nonomatch
+setopt complete_in_word
 
 # color setting
 export TERM=xterm-256color
 
 # alias
+alias ls='ls --color=auto'
+alias la='ls -la'
 alias top='htop'
 alias diff='colordiff'
 alias df='dfc'
 alias lssh='lssh.sh'
-alias vimrc='vim ~/.vimrc'
-alias vim='nvim'
-alias zshrc='vim ~/.zshrc'
-
-# editor
-export EDITOR='vim'
+alias zshrc='emacs ~/dotfiles/.zshrc'
+alias e='emacs'
+alias vim='emacs'
 
 # compdef
-compdef lssh.sh=ssh
+compdef lssh=ssh
+
+# editor
+export EDITOR='emacs'
 
 # ignore a history of duplicate
 setopt hist_ignore_all_dups
-
-# peco history
-# {{{
-function exists { which $1 &> /dev/null }
-
-if exists peco; then
-    function peco_select_history() {
-        local tac
-        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
-    }
-
-    zle -N peco_select_history
-    bindkey '^R' peco_select_history
-fi
-# }}}
-
-# cd 履歴を記録
-# {{{
-typeset -U chpwd_functions
-CD_HISTORY_FILE=${HOME}/.cd_history_file # cd 履歴の記録先ファイル
-function chpwd_record_history() {
-    echo $PWD >> ${CD_HISTORY_FILE}
-}
-chpwd_functions=($chpwd_functions chpwd_record_history)
-# }}}
-
-# peco を使って cd 履歴の中からディレクトリを選択
-# {{{
-# 過去の訪問回数が多いほど選択候補の上に来る
-function peco_get_destination_from_history() {
-    sort ${CD_HISTORY_FILE} | uniq -c | sort -r | \
-        sed -e 's/^[ ]*[0-9]*[ ]*//' | \
-        sed -e s"/^${HOME//\//\\/}/~/" | \
-        peco | xargs echo
-}
-# }}}
-
-# peco を使って cd 履歴の中からディレクトリを選択し cd するウィジェット
-# {{{
-function peco_cd_history() {
-    local destination=$(peco_get_destination_from_history)
-    [ -n $destination ] && cd ${destination/#\~/${HOME}}
-    zle reset-prompt
-}
-zle -N peco_cd_history
-# }}}
-
-# peco を使って cd 履歴の中からディレクトリを選択し，現在のカーソル位置に挿入するウィジェット
-# {{{
-function peco_insert_history() {
-    local destination=$(peco_get_destination_from_history)
-    if [ $? -eq 0 ]; then
-        local new_left="${LBUFFER} ${destination} "
-        BUFFER=${new_left}${RBUFFER}
-        CURSOR=${#new_left}
-    fi
-    zle reset-prompt
-}
-zle -N peco_insert_history
-# }}}
-
-# C-x ; でディレクトリに cd
-# C-x i でディレクトリを挿入
-# {{{
-bindkey '^x;' peco_cd_history
-bindkey '^xi' peco_insert_history
-# }}}
-
-# Go to GHQ Management Repository 
-# {{{
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N peco-src
-bindkey '^]' peco-src
-
-# Set aws command completion
-if pyenv which aws_zsh_completer.sh 1>/dev/null 2>&1; then
-  source "$(pyenv which aws_zsh_completer.sh)"
-fi
-
-# }}}
+setopt auto_menu
+setopt extended_glob
+setopt correct
+setopt re_match_pcre
 
 # ssh agent
 # {{{
@@ -194,3 +97,10 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
 fi
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 ssh-add -l >/dev/null || alias git='ssh-add -l >/dev/null || ssh-add && unalias git; git'
+# }}}
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/yamada-shinji/bin/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/home/yamada-shinji/bin/google-cloud-sdk/completion.zsh.inc'
