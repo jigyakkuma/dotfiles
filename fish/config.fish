@@ -6,9 +6,9 @@ set -x GOOS linux
 set -x GOARCH amd64
 set -x GOROOT (go env GOROOT)
 set -x GOPATH $HOME
-set -x GAE_SDK_ROOT $HOME/bin/src/go_appengine
+# set -x GAE_SDK_ROOT $HOME/bin/src/go_appengine
 set -x PATH $PATH $GOROOT/bin $GOPATH/bin $GAE_SDK_ROOT
-set -x PATH $PATH $HOME/bin/src/go_appengine
+# set -x PATH $PATH $HOME/bin/src/go_appengine
 set -x PATH $PATH $HOME/bin/google-cloud-sdk/bin
 
 # developer env setting
