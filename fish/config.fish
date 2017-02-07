@@ -1,6 +1,9 @@
 # direnv setting
 eval (direnv hook fish)
 
+# hub command setting
+eval (hub alias -s)
+
 # go env setting
 set -x GOOS linux
 set -x GOARCH amd64
