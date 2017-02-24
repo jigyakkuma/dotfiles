@@ -32,17 +32,19 @@ values."
      github
      markdown
      ;; org
-     shell :variables
-             shell-default-shell 'term
-             shell-default-height 30
-             shell-default-position 'bottom
-             shell-default-term-shell "/usr/bin/fish"
+     (shell :variables
+            shell-default-shell 'term
+            shell-default-height 30
+            shell-default-position 'bottom
+            shell-default-term-shell "/usr/bin/fish")
      spell-checking
      syntax-checking
      version-control
      python
-     go
+     (go :variables
+         go-tab-width 2)
      ruby
+     php
      javascript
      typescript
      react
@@ -52,7 +54,9 @@ values."
      sql
      typescript
      gtags
-     )
+     imenu-list
+     csv
+   )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -218,7 +222,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers `prog-mode`
+   dotspacemacs-line-numbers 'prog-mode
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -277,8 +281,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq x-select-enable-clipboard t)
-  (global-git-commit-mode t
-   gofmt-command "goimports")
+  (global-git-commit-mode t)
+  (add-to-list 'exec-path "~/bin")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -290,7 +294,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (pangu-spacing find-by-pinyin-dired chinese-pyim chinese-pyim-basedict ace-pinyin pinyinlib ace-jump-mode sql-indent yaml-mode xterm-color web-mode web-beautify tss yaxception log4e tagedit smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv pyvenv pytest pyenv-mode py-yapf pip-requirements orgit multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode hy-mode helm-pydoc helm-gtags helm-gitignore request helm-flyspell helm-css-scss helm-company helm-c-yasnippet haml-mode go-eldoc gitignore-mode github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags flycheck-pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit with-editor eshell-prompt-extras esh-help emmet-mode diff-hl cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-go go-mode company-anaconda company coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic f ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline smooth-scrolling restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (csv-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode yapfify uuidgen toc-org tide typescript-mode powerline rake py-isort pug-mode spinner org org-plus-contrib org-bullets mwim minitest livid-mode skewer-mode simple-httpd live-py-mode link-hint insert-shebang imenu-list hydra parent-mode hide-comnt projectile go-guru github-search flyspell-correct-helm flyspell-correct pkg-info epl flx eyebrowse evil-visual-mark-mode evil-unimpaired smartparens iedit evil-ediff anzu evil goto-chg undo-tree highlight eshell-z dumb-jump diminish company-shell column-enforce-mode bind-map bind-key packed dash s helm avy helm-core async popup package-build pangu-spacing find-by-pinyin-dired chinese-pyim chinese-pyim-basedict ace-pinyin pinyinlib ace-jump-mode sql-indent yaml-mode xterm-color web-mode web-beautify tss yaxception log4e tagedit smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv pyvenv pytest pyenv-mode py-yapf pip-requirements orgit multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode hy-mode helm-pydoc helm-gtags helm-gitignore request helm-flyspell helm-css-scss helm-company helm-c-yasnippet haml-mode go-eldoc gitignore-mode github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags flycheck-pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit with-editor eshell-prompt-extras esh-help emmet-mode diff-hl cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-go go-mode company-anaconda company coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic f ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline smooth-scrolling restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(spacemacs-theme-custom-colors
    (quote
     ((bg1)
