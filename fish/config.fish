@@ -1,8 +1,13 @@
+# term setting
+set -x TERM xterm-256color
+
+# omf theme setting
+# bobthefish
+set -x theme_display_vi yes
+set -x theme_color_scheme terminal-dark
+
 # direnv setting
 eval (direnv hook fish)
-
-# hub command setting
-eval (hub alias -s)
 
 # go env setting
 set -x GOOS linux
@@ -19,13 +24,16 @@ set -x DEBFULLNAME "jigyakkuma"
 set -x DEBMAIL jigyakkuma@gmail.com
 
 # editor
-set -x EDITOR 'emacs'
+set -x EDITOR 'emacs -nw'
 
 # alias
-alias vim emacs
+alias vim 'emacs -nw'
 
 # zsh2fish history
-set ZSH_HISTORY_FILE $HOME/.zsh_history
+set -x ZSH_HISTORY_FILE $HOME/.zsh_history
+
+# gtags setting
+set -x GTAGSLABEL pygments
 
 # search
 # set fish_plugins theme peco
