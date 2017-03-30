@@ -55,6 +55,7 @@ values."
          go-tab-width 2)
      (ruby :variables
            ruby-enable-enh-ruby-mode t)
+     ruby-on-rails
      html
      javascript
      yaml
