@@ -6,9 +6,6 @@ set -x TERM xterm-256color
 set -x theme_display_vi yes
 set -x theme_color_scheme terminal-dark
 
-# direnv setting
-eval (direnv hook fish)
-
 # go env setting
 set -x GOOS linux
 set -x GOARCH amd64
