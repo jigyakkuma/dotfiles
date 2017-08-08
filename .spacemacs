@@ -46,7 +46,7 @@ values."
      markdown
      ;; org
      (shell :variables
-            shell-default-shell 'xterm-color--256
+            shell-default-shell 'eshell
             shell-default-height 30
             shell-default-position 'bottom
             shell-default-term-shell "/usr/bin/fish")
@@ -58,7 +58,7 @@ values."
      (ruby :variables
            ruby-enable-enh-ruby-mode t)
      ruby-on-rails
-     perl
+     my-perl
      javascript
      yaml
      auto-completion
@@ -69,7 +69,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      mozc
+                                      cperl-mode
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -308,8 +311,13 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+  ;;vue-mode
+  (add-to-list 'auto-mode-alist '("\\.vue$\\'" . web-mode))
+
   (setq-default git-magit-status-fullscreen t)
+
+  ;; mozc setting
+  (setq default-input-method "japanese-mozc") 
 
   ;; indent
   (setq-default
@@ -354,7 +362,7 @@ you should place your code here."
   (global-git-commit-mode t)
   (add-to-list 'exec-path "~/bin")
 
-;;copy and paste command for Linux
+  ;;copy and paste command for Linux
   (defun copy-to-clipboard ()
     "Copies selection to x-clipboard."
     (interactive)
