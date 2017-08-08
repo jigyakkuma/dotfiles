@@ -10,6 +10,7 @@ package hub
 package linuxbrew
 package peco
 package rails
+package rbenv
 theme agnoster
 theme bobthefish
 theme budspencer
