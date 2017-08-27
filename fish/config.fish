@@ -25,6 +25,7 @@ set -x EDITOR 'emacs -nw'
 
 # alias
 alias vim 'emacs -nw'
+alias spacemacs 'emacs'
 
 # zsh2fish history
 set -x ZSH_HISTORY_FILE $HOME/.zsh_history
