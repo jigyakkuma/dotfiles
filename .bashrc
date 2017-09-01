@@ -1,13 +1,23 @@
-# .bashrc
+#
+# ~/.bashrc
+#
 
-# Customize to your needs...
-if [ -d $HOME/.anyenv ] ; then
-  export PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init - zsh)"
-fi
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias spacemacs='emacs'
+PS1='[\u@\h \W]\$ '
+BROWSER=/usr/bin/google-chrome-stable
+EDITOR=vi
 
 # linuxbrew
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
+# $HOME/bin
+export PATH="~/bin:$PATH"
+
+# plenv setting
+eval "$(plenv init -)"
