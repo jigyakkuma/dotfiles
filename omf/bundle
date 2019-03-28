@@ -1,5 +1,5 @@
+package archlinux
 package aws
-package cd
 package config
 package direnv
 package emacs
@@ -8,9 +8,13 @@ package https://github.com/oh-my-fish/plugin-bak
 package https://github.com/oh-my-fish/plugin-plenv
 package hub
 package linuxbrew
+package local-config
 package peco
 package rails
 package rbenv
+package ssh-term-helper
+package virtualfish
+package z
 theme agnoster
 theme bobthefish
 theme budspencer
