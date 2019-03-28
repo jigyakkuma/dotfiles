@@ -6,15 +6,9 @@ set -x TERM xterm-256color
 set -x theme_display_vi yes
 set -x theme_color_scheme terminal-dark
 
-# go env setting
-set -x GOOS linux
-set -x GOARCH amd64
-set -x GOROOT (go env GOROOT)
-set -x GOPATH $HOME
-# set -x GAE_SDK_ROOT $HOME/bin/src/go_appengine
-set -x PATH $PATH $GOROOT/bin $GOPATH/bin $GAE_SDK_ROOT
-# set -x PATH $PATH $HOME/bin/src/go_appengine
+# path
 set -x PATH $PATH $HOME/bin/google-cloud-sdk/bin
+set -x PATH $PATH $HOME/.local/bin
 
 # developer env setting
 set -x DEBFULLNAME "jigyakkuma"
@@ -38,6 +32,16 @@ set -x GTAGSLABEL pygments
 
 function fish_user_key_bindings
   bind \cr peco_select_history
+end
+
+# emacs ansi-term support
+if test -n "$EMACS"
+    set -x TERM eterm-color
+end
+
+# this function may be required
+function fish_title
+    true
 end
 
 # The next line updates PATH for the Google Cloud SDK.
